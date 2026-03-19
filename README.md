@@ -1,6 +1,6 @@
-# Desafio Técnico — Backend API (Django + DRF)
+# ProjectHub API — Scalable Backend with Django REST Framework
 
-Este projeto consiste em uma **API REST** desenvolvida com **Django** e **Django REST Framework**, como solução para um desafio técnico de backend.
+API REST escalável para gerenciamento de projetos e planos de assinatura, com autenticação JWT e arquitetura modular baseada em Django REST Framework.
 
 O objetivo é fornecer endpoints que suportem autenticação, gerenciamento de projetos e listagem/seleção de planos de preços, simulando um backend real consumível por qualquer aplicação frontend.
 
@@ -56,7 +56,7 @@ A documentação interativa está disponível via Swagger em:
 
 ## 🧠 Decisões Técnicas
 
-Python 3.14 foi escolhido para o desenvolvimento local por ser uma das versões mais recentes da linguagem, permitindo acompanhar a evolução do ecossistema Python. A utilização dessa versão se reflete na preocupação em manter o projeto alinhado com as tecnologias mais recentes.
+Python 3.14 foi escolhido para o desenvolvimento local por ser uma das versões mais recentes da linguagem, permitindo acompanhar a evolução do ecossistema Python.
 
 Django 5.2 foi adotado por ser uma versão estável e madura do framework. Embora já exista a versão 6.0, optou-se pela 5.2 devido à maior compatibilidade com bibliotecas amplamente utilizadas no ecossistema Django, além de ser uma versão com a qual possuo maior familiaridade.
 
@@ -64,19 +64,15 @@ PostgreSQL 16, foi escolhido pela sua robustez, integridade transacional e matur
 
 As views genéricas (generics) do Django REST Framework foram utilizadas para acelerar o desenvolvimento e reduzir código repetitivo, mantendo os endpoints claros e padronizados, com personalizações apenas quando necessário.
 
-O endpoint ```api/auth/refresh/```, embora não exigido explicitamente no desafio, foi implementado como boa prática. Ele permite a renovação do token de acesso sem a necessidade de um novo login constante, utilizando um token de refresh com validade maior.
-
 Os testes automatizados utilizam pytest, pytest-django e model-bakery, garantindo que futuras expansões do modelo de dados não quebrem os testes existentes. A cobertura de 98% de todo código, reforça a confiabilidade e segurança na evolução do código.
 
 Os projetos são sempre filtrados pelo usuário autenticado. Já o módulo pricing é global, pois os planos devem estar disponíveis independentemente do usuário. Para relacionar usuários a planos, foi criado o modelo UserProfile, que é automaticamente instanciado no registro do usuário e atualizado quando um plano é selecionado.
-
-A validação dos dados de entrada é feita prioritariamente nos serializers, mantendo as views mais limpas e seguindo as boas práticas do DRF.
 
 A validação de dados é realizada prioritariamente nos serializers, mantendo as views mais simples e alinhadas às boas práticas do Django REST Framework.
 
 A arquitetura foi organizada por apps independentes (accounts, projects, pricing), para separação das responsabilidades de cada um e também com a ideia de separação dos módulos, facilitando a manutenção e a expansão dos projeto posteriomente.
 
-A documentação da API é gerada automaticamente via Swagger/OpenAPI, com descrições detalhadas dos endpoints para facilitar o consumo por aplicações frontend.
+A documentação da API é gerada automaticamente via Swagger/OpenAPI, com descrições detalhadas dos endpoints para facilitar a interpretação e consumo por aplicações frontend.
 
 No ambiente Docker, foi utilizado Python 3.12-slim, por ser uma versão estável e amplamente suportada em produção. Essa escolha garante maior compatibilidade com bibliotecas e não impacta o funcionamento da aplicação em relação ao ambiente local.
 
